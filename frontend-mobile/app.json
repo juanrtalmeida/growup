@@ -1,0 +1,39 @@
+{
+	"expo": {
+		"name": "Sporium",
+		"slug": "Sporium",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/app.png",
+		"userInterfaceStyle": "dark",
+		"splash": {
+			"resizeMode": "contain",
+			"backgroundColor": "#f4f6fa"
+		},
+		"updates": {
+			"fallbackToCacheTimeout": 0
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "com.yukitoabe.blackdiamond"
+		},
+		"android": {
+			"softwareKeyboardLayoutMode": "pan",
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/app.png",
+				"backgroundColor": "#FFFFFF"
+			},
+			"package": "com.yukitoabe.blackdiamond"
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"extra": {
+			"eas": {
+				"projectId": "e99590b6-015f-4bc8-8aa8-219fdcbfee0b"
+			}
+		},
+		"owner": "yukitoabe"
+	}
+}
