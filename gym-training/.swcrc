@@ -1,0 +1,25 @@
+{
+	"jsc": {
+		"parser": {
+			"syntax": "typescript",
+			"tsx": false,
+			"dynamicImport": false,
+			"exportDefaultFrom": false,
+			"experimental": {
+				"keepImportAssertions": true
+			},
+			"topLevelAwait": true
+		},
+		"target": "es2022",
+		"baseUrl": "./",
+		"paths": {
+			"@src/*": ["./dist/*"]
+		}
+	},
+	"isModule": true,
+	"module": {
+		"type": "nodenext",
+		"ignoreDynamic": false
+	},
+	"minify": true
+}

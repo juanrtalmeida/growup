@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"lib": ["ES2020"],
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"target": "ESNext",
+		"esModuleInterop": true,
+		"outDir": "./dist",
+		"rootDir": "src",
+		"baseUrl": "./",
+		"paths": {
+			"@src/*": ["src/*"]
+		}
+	},
+
+	"ts-node": {
+		"swc": true,
+		"esm": true,
+		"files": true,
+		"experimentalSpecifierResolution": "node"
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules"]
+}

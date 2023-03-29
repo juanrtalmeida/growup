@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  name     String?
+  password String
+  trains   Train[]
+}
+
+model Train {
+  id          String     @id @default(uuid())
+  name        String
+  description String
+  start       DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+  end         DateTime?
+  trainWeeks  Week[]
+  exercises   Exercise[]
+  user        User       @relation(fields: [userid], references: [id])
+  userid      String
+  days        Int        @default(0)
+}
+
+model Week {
+  id         String      @id @default(uuid())
+  train      Train       @relation(fields: [trainid], references: [id])
+  trainid    String
+  start      DateTime
+  updated_at DateTime    @updatedAt
+  end        DateTime?
+  weekChange WeekChange?
+  days       Int         @default(0)
+}
+
+model WeekChange {
+  id          String @id @default(uuid())
+  week        Week   @relation(fields: [weekid], references: [id])
+  weekid      String @unique
+  changeType  String
+  changeValue Int?
+}
+
+model Exercise {
+  id              String           @id @default(uuid())
+  name            String
+  description     String
+  train           Train[]
+  exerciseDetails ExerciseDetails?
+}
+
+model ExerciseDetails {
+  id         String   @id @default(uuid())
+  exercise   Exercise @relation(fields: [exerciseid], references: [id])
+  exerciseid String   @unique
+  weight     Int
+  reps       Int
+  series     Int      @default(3)
+}
