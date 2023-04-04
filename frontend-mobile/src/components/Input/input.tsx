@@ -16,7 +16,7 @@ export function Input({
 	return (
 		<View
 			style={{
-				backgroundColor: colors.quaternary,
+				backgroundColor: colors.primary,
 				borderRadius: 10,
 				justifyContent: 'center',
 				alignItems: 'center',
@@ -25,20 +25,20 @@ export function Input({
 		>
 			{iconed ? <Ionicons name="ios-search" size={24} color={colors.secondary} /> : null}
 			<TextInput
-				onChange={(e) => onChange(e.nativeEvent.text)}
 				value={value}
+				onChangeText={onChange}
 				cursorColor={colors.secondary}
 				selectionColor={colors.secondary}
 				autoCorrect={false}
 				style={{
-					width: '90%',
+					width: '100%',
 					paddingVertical: 10,
 					paddingLeft: 10,
 					fontFamily: text.montserratMedium,
 					color: colors.quinary
 				}}
 				placeholder={placeholder}
-				placeholderTextColor={colors.quinary}
+				placeholderTextColor={colors.quaternary}
 			/>
 		</View>
 	)

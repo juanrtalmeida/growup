@@ -10,7 +10,10 @@ import { TokenContext } from './src/contexts/token'
 import { LoginOrRegisterRoute } from './src/routes/login/login_or_register'
 import Lottie from 'lottie-react-native'
 
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
+
 import { TabRouter } from './src/routes/router'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 export default function App() {
 	const [isFirstTime, setIsFirstTime] = useState(true)
@@ -106,13 +109,18 @@ export default function App() {
 		)
 	}
 	return (
-		<TokenContext.Provider value={{ hasToken, setHasToken }}>
-			<View style={styles.container}>
-				<NavigationContainer>
-					<TabRouter />
-				</NavigationContainer>
-			</View>
-		</TokenContext.Provider>
+		<GestureHandlerRootView style={{ flex: 1 }}>
+			{/* content */}
+			<BottomSheetModalProvider>
+				<TokenContext.Provider value={{ hasToken, setHasToken }}>
+					<View style={styles.container}>
+						<NavigationContainer>
+							<TabRouter />
+						</NavigationContainer>
+					</View>
+				</TokenContext.Provider>
+			</BottomSheetModalProvider>
+		</GestureHandlerRootView>
 	)
 }
 

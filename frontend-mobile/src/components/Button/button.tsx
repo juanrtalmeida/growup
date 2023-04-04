@@ -5,6 +5,7 @@ import loaderYellow from '../../assets/animations/71490-rounding-lines-2-yellow.
 import loaderBlack from '../../assets/animations/71490-rounding-lines-2-black.json'
 import { text as TextConst } from '../../assets/styles/text'
 import { colors } from '../../assets/styles/colors'
+import { notificationAsync, NotificationFeedbackType } from 'expo-haptics'
 
 type ButtonPropsType = {
 	isLoading?: boolean
@@ -25,7 +26,11 @@ export function Button({ isLoading, onPress, title, style, theme = 'YELLOW', isD
 		<TouchableOpacity
 			disabled={isDisabled}
 			activeOpacity={0.9}
-			onPress={onPress}
+			onPress={(e) => {
+				if (isDisabled) return
+				onPress && onPress(e)
+				notificationAsync(NotificationFeedbackType.Error)
+			}}
 			style={[styles.button, style, !isDisabled && styles[theme], isDisabled && styles.disabledButton]}
 		>
 			{isLoading ? (
@@ -39,7 +44,8 @@ export function Button({ isLoading, onPress, title, style, theme = 'YELLOW', isD
 
 const styles = StyleSheet.create({
 	text: {
-		fontFamily: TextConst.montserratBold
+		fontFamily: TextConst.montserratBold,
+		color: colors.primary
 	},
 	button: {
 		justifyContent: 'center',

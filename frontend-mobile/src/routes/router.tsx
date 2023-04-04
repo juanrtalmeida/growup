@@ -2,11 +2,12 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 import { colors } from '../assets/styles/colors'
-import { AntDesign, Ionicons } from '@expo/vector-icons'
+import { AntDesign, Ionicons, SimpleLineIcons } from '@expo/vector-icons'
 import { Home } from './home/home'
 import { text } from '../assets/styles/text'
 import { RegisterScreen } from './register/register'
 import { ScheduleScreen } from './schedule/schedule'
+import { ClockScreen } from './clock/clock'
 
 export type RootStackParamList = {
 	HomeScreen: undefined
@@ -69,7 +70,7 @@ function MyTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 
 				return (
 					<TouchableOpacity
-						activeOpacity={0.8}
+						activeOpacity={0.6}
 						key={index}
 						accessibilityRole="button"
 						onPress={onPress}
@@ -153,6 +154,21 @@ export function TabRouter() {
 				}}
 				name="Schedule"
 				component={ScheduleScreen}
+			/>
+			<Tab.Screen
+				options={{
+					headerShown: false,
+					tabBarHideOnKeyboard: true,
+					tabBarIcon: ({ focused }) => {
+						return (
+							<View style={{ height: 20, width: 20 }}>
+								<SimpleLineIcons name="clock" size={20} color={focused ? colors.secondary : colors.quaternary} />
+							</View>
+						)
+					}
+				}}
+				name="Clock"
+				component={ClockScreen}
 			/>
 		</Tab.Navigator>
 	)
